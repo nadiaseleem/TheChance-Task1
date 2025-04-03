@@ -25,6 +25,18 @@ fun main() {
     )
 
     check(
+        "Complete valid 2x2 board should return true",
+        result = isSudokuValid(
+            createBoard(
+                "12" +
+                        "21",
+                2
+            )
+        ),
+        correctResult = true
+    )
+
+    check(
         "Complete valid 4x4 board should return true",
         result = isSudokuValid(
             createBoard(
