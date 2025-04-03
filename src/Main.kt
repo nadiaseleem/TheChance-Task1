@@ -77,5 +77,20 @@ private fun isValidBox(
 }
 
 fun isValidIPv4(ip: String): Boolean {
-    return false
+    val trimmedIp = ip.trim()
+    if (trimmedIp.isEmpty() || trimmedIp.length > 15) return false
+
+    val segments = trimmedIp.split(".")
+
+    if (segments.size != 4) return false
+
+    for (segment in segments) {
+        if (segment.isEmpty()) return false
+        if (segment.length > 1 && segment[0] == '0') return false
+        if (!segment.all { it.isDigit() }) return false
+        val value = segment.toIntOrNull() ?: return false
+        if (value < 0 || value > 255) return false
+    }
+
+    return true
 }
